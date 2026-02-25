@@ -1,7 +1,6 @@
 # Mi Configuración de Fastfetch 🚀
 Este repositorio contiene mi configuración personalizada de **Fastfetch** y mi script de utilidad **ff-random.sh**.
 ![Preview de mi Fastfetch](screenshotExample.png)
-![Uploading screenshotExample.png…]()
 
 ## Pre-requisitos
 Antes de instalar, asegúrate de tener lo siguiente:
