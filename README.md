@@ -20,3 +20,11 @@ Antes de instalar, asegúrate de tener lo siguiente:
 * **Configuración fastfetch**: Configuración personalizada que tomo como base a examples/10.jsonc del repo oficial de fastfetch.
 * **Logos y colores**: Logos .png y un archivo de colores Hexadecimal que se ubican en `~/.config/fastfetch/logo`.
 * **Script**: El script `ff-random.sh` que se encargará de cambiar de imagen y color a los campos del fastfetch.
+
+## Como Modificar:
+Primero considerar que debe haber la misma cantidad de opciones de colores en `colores.conf` y la misma cantidad de imagenes en `logos`, para que el script funcione correctamente.
+Por si quieren quitar o agregar imagenes de la configuración también deben de tener en cuenta a colores.conf.
+
+* **Logos**: Los logos serán imagenes en formato .png y obligatoriamente deben tener en su nombres como primer caracter un número, ejemplo: 1.png, 2.png o 71.png, y de preferencia deben ser nombres en secuencia como `0.png, 1.png, 2.png, 3.png ... #.png`. Ubicación : `~/.config/fastfetch/logos/*.png`
+* **Colores**: Los colores están en formato Hexadecimal y cada color le corresponde al nombre de una imagen, en fastfetch hay 4 grupos de modulos diferenciados por el color que se determinan por su **KeyColor** y **C1, C2, C3, C4**, si desean agregar un nuevo modulo como `date time, version, font, etc` deben agregarlo a algún grupo colocando a su `Keycolor` un valor como `C1, C2, C3 o C4.Ubicación` : `~/.config/fastfetch/logos/colores.conf`
+* **fastfetch**: El único archivo que deben tocar para modificar aspectos y campos del fastfetch es **config.jsonc** en `~/.config/fastfetch/`, preferiblemente no tocar los campos de **source y type**
