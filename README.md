@@ -1,4 +1,4 @@
-# Mi Configuración de Arch Linux 🚀
+# Mi Configuración de Fastfetch 🚀
 Este repositorio contiene mi configuración personalizada de **Fastfetch** y mi script de utilidad **ff-random.sh**.
 ![Preview de mi Fastfetch](screenshotExample.png)
 
