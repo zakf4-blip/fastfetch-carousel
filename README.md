@@ -18,5 +18,5 @@ Antes de instalar, asegúrate de tener lo siguiente:
 ## Qué incluye:
 * **Fastzk**: Alias que se usará para ejecutar un fastfetch con logos y colores dinamicos.
 * **Configuración fastfetch**: Configuración personalizada que tomo como base a examples/10.jsonc del repo oficial de fastfetch.
-* **Logos personalizado**: Logos .png que se ubican en `~/.config/fastfetch/logo`.
-* **Script**: El script `ff-random.sh` que se encargará de cambiar de imagen y colores tomados de `.bashrc` de los campos de fastfetch.
+* **Logos y colores**: Logos .png y un archivo de colores Hexadecimal que se ubican en `~/.config/fastfetch/logo`.
+* **Script**: El script `ff-random.sh` que se encargará de cambiar de imagen y color a los campos del fastfetch.
