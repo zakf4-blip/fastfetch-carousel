@@ -1,16 +1,25 @@
-// Load with --config examples/2.jsonc
-// Note that you must replace the image path to an existing image to display it.
+// hi. This file is for making changes to your fastfetch structure, 
+// adding fields, and modifying any aspect of fastfetch you want.
+
+//Hola. Este archivo es para hacer cambios en la estructura de tu fastefetch,
+//agregar campos y modificar cualquier aspecto que quieres del fastfetch. 
+
+//While the file "config_run.jsonc" is just a copy of "config.jsonc" which in turn applies the colors to the 4 groups of modules "C1, C2, C3 and C4" and is the 
+//file that is executed when calling with the alias "fastzk" which is in ~/.bashrc or ~/zshrc
+
+//Mientras que el archivo " config_run.jsonc " es solo una copia de "config.jsonc" que a la vez aplica los colores a los 4 grupos de modulos "C1, C2, C3 y C4" y 
+//es el archivo que se ejecuta al llamar con el alias "fastzk" que está en ~/.bashrc o ~/zshrc
 
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "source": "~/.config/fastfetch/logos/current.png",
+        "source": "/home/zaku0/.config/fastfetch/logos/current.png",
         "type": "kitty-direct",
         "width": 27,
         "height": 14,
         "padding": {
             "top": 4,
-            "right": 2 
+            "right": 2 //antes era 4 
         }
     },
     "display": {
@@ -27,8 +36,8 @@
         },
         {
             "type": "title",
-	    "key": "\u001b[37m",
-	    "format": "                   {1}@{2}"
+	   "key": "\u001b[37m",
+	   "format": "                   {1}@{2}"
         },
         {
             "type": "custom",
@@ -47,93 +56,93 @@
         {
             "type": "os",
             "key": "󰣇 OS",
-            "keyColor": "#9976b6"
+            "keyColor": "%%C1%%"
         },
         {
             "type": "kernel",
             "key": "│ ├",
-            "keyColor": "#9976b6"
+            "keyColor": "%%C1%%"
         },
         {
             "type": "packages",
             "key": "│ ├",
-            "keyColor": "#9976b6"
+            "keyColor": "%%C1%%"
         },
         {
             "type": "shell",
             "key": "│ └",
-            "keyColor": "#9976b6"
+            "keyColor": "%%C1%%"
         },
         {
             "type": "wm",
             "key": " DE/WM",
-            "keyColor": "#fe9cd9"
+            "keyColor": "%%C2%%"
         },
         {
             "type": "lm",
             "key": "│ ├󰧨",
-            "keyColor": "#fe9cd9"
+            "keyColor": "%%C2%%"
         },
         {
             "type": "icons",
             "key": "│ ├󰀻",
-            "keyColor": "#fe9cd9"
+            "keyColor": "%%C2%%"
         },
         {
             "type": "terminal",
             "key": "│ ├",
-            "keyColor": "#fe9cd9"
+            "keyColor": "%%C2%%"
         },
         {
             "type": "host",
             "key": "󰌢 PC",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "cpu",
             "key": "│ ├󰻠",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "gpu",
             "key": "│ ├󰍛",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "disk",
             "key": "│ ├",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "memory",
             "key": "│ ├󰑭",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "uptime",
             "key": "│ ├󰅐",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "display",
             "key": "│ └󰍹",
-            "keyColor": "#615074"
+            "keyColor": "%%C3%%"
         },
         {
             "type": "sound",
             "key": " SND",
-            "keyColor": "#dddddd",
-	    "format": "PipeWire"
+            "keyColor": "%%C4%%",
+	   "format": "PipeWire"
         },
         {
             "type": "player",
             "key": "│ ├󰥠",
-            "keyColor": "#dddddd"
+            "keyColor": "%%C4%%"
         },
         {
             "type": "media",
             "key": "│ └󰝚",
-            "keyColor": "#dddddd"
+            "keyColor": "%%C4%%"
         },
         {
             "type": "custom",
