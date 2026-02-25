@@ -1,13 +1,12 @@
 #!/bin/bash
-# Carrusel de imágenes + colores dinámicos para fastfetch
-# Autor: zaku0 | github.com//tu-repo
+# Carrusel de imágenes + colores dinámicos para su real fastfetch
 
 LOGO_DIR="$HOME/.config/fastfetch/logos"
 CURRENT_LOGO="$LOGO_DIR/current.png"
-COUNTER_FILE="$LOGO_DIR/.counter"
+COUNTER_FILE="$LOGO_DIR/.counter.txt"
 COLORES_FILE="$LOGO_DIR/colores.conf"
 CONFIG_FILE="$HOME/.config/fastfetch/config.jsonc"
-TOTAL_IMAGES=18
+TOTAL_IMAGES=$(find "$LOGO_DIR" -maxdepth 1 -name "*.png" ! -name "current.png" | wc -l)
 
 # ── Contador ──────────────────────────────────────────────
 if [[ -f "$COUNTER_FILE" ]]; then
