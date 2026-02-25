@@ -1,5 +1,5 @@
 # Mi Configuración de Fastfetch 🚀
-Este repositorio contiene mi configuración personalizada de **Fastfetch** y mi script de utilidad **ff-random.sh**.
+Este repositorio contiene mi configuración personalizada de **Fastfetch**.
 ![Preview de mi Fastfetch](screenshotExample.png)
 
 ## Pre-requisitos
