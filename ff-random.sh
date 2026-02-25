@@ -1,63 +1,39 @@
-#!/bin/bash
-# Carrusel de imágenes + colores dinámicos para su real fastfetch
+#!/usr/bin/env bash
 
+# ── Rutas de Archivos y Recursos necesarios ───────────────
 LOGO_DIR="$HOME/.config/fastfetch/logos"
-CURRENT_LOGO="$LOGO_DIR/current.png"
-COUNTER_FILE="$LOGO_DIR/.counter.txt"
 COLORES_FILE="$LOGO_DIR/colores.conf"
-CONFIG_FILE="$HOME/.config/fastfetch/config.jsonc"
-TOTAL_IMAGES=$(find "$LOGO_DIR" -maxdepth 1 -name "*.png" ! -name "current.png" | wc -l)
+CONFIG_TEMPLATE="$HOME/.config/fastfetch/config.jsonc" 
+CONFIG_RUN="$HOME/.config/fastfetch/config_run.jsonc"  # Archivo volátil generado para evitar corromper la configuración original
+COUNTER_FILE="$LOGO_DIR/.counter.txt"  # Persistencia del índice para saber qué imagen sigue en la próxima ejecución
 
-# ── Contador ──────────────────────────────────────────────
-if [[ -f "$COUNTER_FILE" ]]; then
-    COUNTER=$(cat "$COUNTER_FILE")
-else
-    COUNTER=0
-fi
+# ── Lógica de imagen ──────────────────────────────────────
+IMAGES=("$LOGO_DIR"/[0-9]*.png)  # Filtra archivos que inician con números [1,2,..9]. para ignorar a 'current.png' y otros archivos de texto
+TOTAL_IMAGES=${#IMAGES[@]}       # Obtiene el tamaño del array (cantidad de imágenes válidas encontradas)
+[[ -f "$COUNTER_FILE" ]] && read -r COUNTER < "$COUNTER_FILE" || COUNTER=0 # Lee el último índice guardado; si no existe, inicia en 0
 
-NEXT=$(( (COUNTER % TOTAL_IMAGES) + 1 ))
-echo "$NEXT" > "$COUNTER_FILE"
+NEXT=$(( (COUNTER % TOTAL_IMAGES) + 1 )) # Cálculo aritmético para rotar las imágenes de forma cíclica (del 1 al total)
+echo "$NEXT" > "$COUNTER_FILE"           # Actualiza el archivo de texto con el nuevo número de turno
 
-# ── Symlink a la imagen actual ─────────────────────────────
-ln -sf "$LOGO_DIR/${NEXT}.png" "$CURRENT_LOGO"
+ln -sf "$LOGO_DIR/${NEXT}.png" "$LOGO_DIR/current.png" # Crea un enlace simbólico que apunta a la imagen activa del ciclo
 
-# ── Leer colores para esta imagen ──────────────────────────
-COLOR_LINE=$(grep -v '^\s*#' "$COLORES_FILE" | awk -v img="$NEXT" '$1 == img {print}')
+# ── Leer colores ──────────────────────────────────────────
+# Extraemos los 4 colores de una sola vez de "colores.conf"
+read -r _ C1 C2 C3 C4 < <(grep -E "^$NEXT\s" "$COLORES_FILE") # Busca la línea que inicia con el número de imagen y asigna sus colores a las variables
 
-if [[ -z "$COLOR_LINE" ]]; then
-    echo "[ff-random] Advertencia: no se encontraron colores para la imagen $NEXT en colores.conf"
-    fastfetch --config "$CONFIG_FILE"
-    exit 0
-fi
-
-C1=$(echo "$COLOR_LINE" | awk '{print $2}')
-C2=$(echo "$COLOR_LINE" | awk '{print $3}')
-C3=$(echo "$COLOR_LINE" | awk '{print $4}')
-C4=$(echo "$COLOR_LINE" | awk '{print $5}')
-
-# ── Modificar los keyColor en config.jsonc ─────────────────
-CURRENT_COLORS=($(grep '"keyColor"' "$CONFIG_FILE" | grep -oP '#[0-9a-fA-F]{6}' | awk '!seen[$0]++'))
-
-OLD_C1="${CURRENT_COLORS[0]}"
-OLD_C2="${CURRENT_COLORS[1]}"
-OLD_C3="${CURRENT_COLORS[2]}"
-OLD_C4="${CURRENT_COLORS[3]}"
-
-# Validar que los 4 colores existen y no están vacíos
-if [[ -z "$OLD_C1" || -z "$OLD_C2" || -z "$OLD_C3" || -z "$OLD_C4" ]]; then
-    echo "[ff-random] Error: no se pudieron leer los 4 keyColors actuales del config."
-    echo "  Colores encontrados: ${CURRENT_COLORS[*]}"
-    fastfetch --config "$CONFIG_FILE"
+if [[ -z "$C4" ]]; then
+    echo "[ff-random] Error: Colores insuficientes en colores.conf para la imagen $NEXT"
+    fastfetch --config "$CONFIG_TEMPLATE"
     exit 1
 fi
 
-# Reemplazar en el archivo
-sed -i \
-    -e "s/${OLD_C1}/${C1}/gI" \
-    -e "s/${OLD_C2}/${C2}/gI" \
-    -e "s/${OLD_C3}/${C3}/gI" \
-    -e "s/${OLD_C4}/${C4}/gI" \
-    "$CONFIG_FILE"
+# ── Reemplazo Colores ──────────────────────────────────────
+# Reemplazamos las etiquetas únicas (%%CX%%) por los valores hexadecimales 
+sed -e "s/%%C1%%/${C1}/g" \
+    -e "s/%%C2%%/${C2}/g" \
+    -e "s/%%C3%%/${C3}/g" \
+    -e "s/%%C4%%/${C4}/g" \
+    "$CONFIG_TEMPLATE" > "$CONFIG_RUN" # Redirige el resultado del procesamiento a un nuevo archivo JSON
 
-# ── Ejecutar fastfetch ─────────────────────────────────────
-fastfetch --config "$CONFIG_FILE"
+# ── Ejecutar ──────────────────────────────────────────────
+fastfetch --config "$CONFIG_RUN" # Lanza fastfetch utilizando la configuración modificada, que se genero de "Reemplazo Colores"
