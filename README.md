@@ -30,11 +30,15 @@ Primero deben ejecutar chmod +x install.sh y luego ./install.sh.
   
   * **Ejemplo**:
     En `colores.conf` hay el siguiente contenido:
+    
     1  #8dbfca  #f9a2c5  #eec2d6  #96cdd9
+    
     2  #9976b6  #fe9cd9  #615074  #dddddd
  
     Por ende, deben de existir dos imagenes .png en el directorio `logos` con estos nombres:
+    
     1.png
+    
     2.png
 
 * **Modificar fastfetch**: El único archivo que deben tocar para modificar aspectos, módulos y campos del fastfetch es -> **config.jsonc**, NO X**config_run.jsonc**; preferiblemente, no tocar los campos de "source" y "type" para evitar errores en la carga. Para agregar nuevos módulos como "date time, version, font, etc" y se siga manteniendo la sincronia de los colores se deben de crear junto con la variable "Keycolor" y darle algunos de estos valores "C1, C2, C3 o C4". Ubicación: `~/.config/fastfetch/config.jsonc`.
