@@ -22,7 +22,7 @@ Primero deben ejecutar chmod +x install.sh y luego ./install.sh.
 * **Script**: El script `ff-random.sh` que se encargará de cambiar de imagen y color a los campos del fastfetch.
 
 ## Como Modificar:
-❗Primero considerar que debe haber la misma cantidad de opciones de colores en `colores.conf` y la misma cantidad de imágenes con formato .png en el directorio `logos` para que el script `ff-random.sh` funcione correctamente. Por si quieren quitar o agregar imágenes de la configuración, también deben de tener en cuenta a `colores.conf`. La mayoría de limitaciones que hay en la modificación de mi configuración de fastfetch es debido al script `ff-random.sh`, si desean implementar cambios e ignorar las limitaciones, deben de readaptar el script `ff-random.sh`.
+❗Primero considerar que debe haber la misma cantidad de opciones de colores en `colores.conf` y la misma cantidad de imágenes con formato .png en el directorio `logos` para que el script `ff-random.sh` funcione correctamente. **Por si quieren quitar o agregar imágenes de la configuración, también deben de tener en cuenta a `colores.conf`**. La mayoría de limitaciones que hay en la modificación de mi configuración de fastfetch es debido al script `ff-random.sh`, si desean implementar cambios e ignorar las limitaciones, deben de readaptar el script `ff-random.sh`.
 
 * **Modificar Logos**: Los logos serán imágenes en formato .png y obligatoriamente deben tener en sus nombres como primer carácter un número, ejemplo: 1.png, 2.png o 71.png, y de preferencia deben ser nombres en secuencia como "0.png, 1.png, 2.png, 3.png ... 100.png". Ubicación : `~/.config/fastfetch/logos/*.png`.
   
