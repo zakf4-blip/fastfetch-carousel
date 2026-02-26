@@ -40,7 +40,6 @@ echo ""
 
 # Definir variables para los comandos a agregar
 ALIAS_LINE="alias fastzk='$BIN_DIR/ff-random.sh'"
-EXEC_LINE="ff-random.sh"
 
 # Crear array de archivos a configurar
 SH_FILES=()
@@ -67,19 +66,11 @@ for FILE in "${SH_FILES[@]}"; do
         echo "" >> "$FILE"
         echo "# Alias para Fastfetch personalizado" >> "$FILE"
         echo "$ALIAS_LINE" >> "$FILE"
+        echo "" >> "$HOME/.zshrc"
+        echo "fastzk" >> "$HOME/.zshrc"
         echo "  ✓ Alias 'fastzk' agregado"
     else
         echo "  ✓ Alias 'fastzk' ya existe"
-    fi
-    
-    # Agregar ejecución automática si no existe
-    if ! grep -q "ff-random.sh" "$FILE"; then
-        echo "" >> "$FILE"
-        echo "# Ejecución automática de fastfetch personalizado" >> "$FILE"
-        echo "$EXEC_LINE" >> "$FILE"
-        echo "  ✓ Ejecución automática agregada"
-    else
-        echo "  ✓ Ejecución automática ya existe"
     fi
     
     # Limpiar archivo temporal
