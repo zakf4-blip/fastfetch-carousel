@@ -9,11 +9,11 @@ Antes de instalar, asegúrate de tener lo siguiente:
 * **Nerd Fonts** 👓
 
 ## ¿Qué hace el instalador?
+Primero deben ejecutar chmod +x install.sh y luego ./install.sh.
 1. Crea los directorios `~/.config/fastfetch` y `~/.local/bin` si en caso no existan.
 2. Mueve la carpeta de `logos` y el archivo `config.jsonc` a `~/.config/fastfetch` .
 3. Mueve el script `ff-random.sh` a `~/.local/bin` 
-4. Da permisos de ejecución a `ff-random.sh`.
-5. Crea el alias `fastzk` en tu `.bashrc` o `.zshrc` automáticamente.
+4. Crea el alias `fastzk` y lo llama en tu `.bashrc` o `.zshrc` automáticamente.
 
 ## Qué incluye:
 * **Fastzk**: Un alias que se usará para ejecutar un fastfetch con logos y colores dinamicos en forma ciclica.
