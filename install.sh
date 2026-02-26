@@ -1,5 +1,4 @@
 #!/bin/bash
-
 REPO_DIR=$(pwd)
 FASTFETCH_CONF="$HOME/.config/fastfetch"
 BIN_DIR="$HOME/.local/bin"
@@ -57,27 +56,19 @@ for FILE in "${SH_FILES[@]}"; do
     SHELL_NAME=$(basename "$FILE")
     echo "Configurando $SHELL_NAME..."
     
-    # Crear archivo temporal para edición segura
-    TEMP_FILE="${FILE}.tmp_install"
-    cp "$FILE" "$TEMP_FILE"
-    
-    # Agregar alias si no existe
-    if ! grep -q "alias fastzk" "$FILE"; then
+    # Agregar alias y fastzk si no existen
+    if ! grep -q "fastzk" "$FILE"; then
         echo "" >> "$FILE"
-        echo "# Alias para Fastfetch personalizado" >> "$FILE"
         echo "$ALIAS_LINE" >> "$FILE"
-        echo "" >> "$HOME/.zshrc"
-        echo "fastzk" >> "$HOME/.zshrc"
-        echo "  ✓ Alias 'fastzk' agregado"
+        echo "fastzk" >> "$FILE"
+        echo "  ✓ fastzk agregado"
     else
-        echo "  ✓ Alias 'fastzk' ya existe"
+        echo "  ✓ fastzk ya existe"
     fi
-    
-    # Limpiar archivo temporal
-    rm -f "$TEMP_FILE"
 done
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "✓ Instalación completada exitosamente"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
