@@ -40,7 +40,7 @@ echo ""
 
 # Definir variables para los comandos a agregar
 ALIAS_LINE="alias fastzk='$BIN_DIR/ff-random.sh'"
-EXEC_LINE="$BIN_DIR/ff-random.sh"
+EXEC_LINE="ff-random.sh"
 
 # Crear array de archivos a configurar
 SH_FILES=()
